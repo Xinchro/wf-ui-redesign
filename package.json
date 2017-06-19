@@ -1,0 +1,12 @@
+{
+  "name": "warframe-ui-redesign",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "sass index.scss index.css && http-server -p 8000"
+  },
+  "author": "Xinchro",
+  "license": "UNLICENSED"
+}

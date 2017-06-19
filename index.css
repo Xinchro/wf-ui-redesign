@@ -1,0 +1,454 @@
+.shield-val, .health-val {
+  font-weight: 700;
+  display: inline-block;
+  text-align: right; }
+
+.shield-val {
+  color: darkcyan; }
+
+.health-val {
+  color: darkred; }
+
+.val-wrapper {
+  text-align: right; }
+
+.data-wrapper {
+  width: 100%;
+  display: inline-block;
+  font-size: 0;
+  background: darkred; }
+  .data-wrapper .val-wrapper {
+    text-align: right;
+    font-size: 0;
+    margin: 0;
+    padding: 0; }
+    .data-wrapper .val-wrapper .shield-val, .data-wrapper .val-wrapper .health-val {
+      font-size: 18px;
+      line-height: 18px;
+      margin: 0; }
+    .data-wrapper .val-wrapper .shield-val {
+      color: darkcyan;
+      display: inline-block;
+      font-weight: 700; }
+    .data-wrapper .val-wrapper .health-val {
+      color: orange;
+      display: inline-block;
+      font-weight: 700; }
+  .data-wrapper .bar-wrapper {
+    width: 100%;
+    font-size: 0;
+    margin: 0; }
+    .data-wrapper .bar-wrapper .shield-bar {
+      display: inline-block;
+      border: 2px solid darkcyan;
+      width: calc(50% - 4px); }
+    .data-wrapper .bar-wrapper .health-bar {
+      display: inline-block;
+      border: 2px solid orange;
+      width: calc(50% - 4px); }
+    .data-wrapper .bar-wrapper .energy-bar {
+      display: block;
+      border: 1px solid cyan;
+      width: calc(100% - 2px); }
+  .data-wrapper .name-slot-wrapper {
+    font-size: 0;
+    margin-top: 2px; }
+    .data-wrapper .name-slot-wrapper .player-name {
+      width: calc(100% - 14px);
+      display: inline-block;
+      font-size: 14px;
+      line-height: 14px;
+      text-align: right; }
+    .data-wrapper .name-slot-wrapper .slot {
+      width: 14px;
+      height: 14px;
+      display: inline-block;
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 14px;
+      text-align: center;
+      background: white;
+      border-radius: 100%; }
+
+body, html {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background: maroon;
+  overflow: hidden; }
+
+#gui {
+  display: none;
+  background: rgba(255, 0, 0, 0.1);
+  height: 100%;
+  width: 100%;
+  z-index: 2;
+  position: fixed;
+  top: 0; }
+
+#map {
+  background: blue;
+  position: fixed;
+  height: 150px;
+  width: 180px;
+  top: 10px;
+  left: 10px; }
+  #map #map-block {
+    background: pink;
+    display: block;
+    height: 100px;
+    width: 100%;
+    margin: 0; }
+  #map #map-label {
+    margin: 0;
+    margin-top: 5px;
+    font-weight: 700; }
+
+#frame-stats {
+  background: yellow;
+  position: fixed;
+  height: 80px;
+  width: 210px;
+  top: 10px;
+  right: 10px; }
+  #frame-stats .data-wrapper .val-wrapper {
+    height: 100%; }
+    #frame-stats .data-wrapper .val-wrapper .shield-val, #frame-stats .data-wrapper .val-wrapper .health-val {
+      height: 100%;
+      font-size: 64px;
+      line-height: 54px; }
+  #frame-stats .data-wrapper .bar-wrapper .shield-bar, #frame-stats .data-wrapper .bar-wrapper .health-bar {
+    border-width: 3px;
+    width: calc(50% - 6px); }
+  #frame-stats .data-wrapper .name-slot-wrapper .player-name, #frame-stats .data-wrapper .name-slot-wrapper .slot {
+    font-size: 16px;
+    line-height: 16px;
+    height: 16px;
+    margin: 0; }
+  #frame-stats .data-wrapper .name-slot-wrapper .player-name {
+    right: 5px; }
+
+#companion {
+  background: pink;
+  position: fixed;
+  height: 50px;
+  width: 125px;
+  top: 110px;
+  right: 10px;
+  margin-top: 5px; }
+
+#active-stats {
+  background: green;
+  position: fixed;
+  width: 180px;
+  right: 10px;
+  bottom: 10px; }
+  #active-stats #active-skill-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    text-align: center; }
+    #active-stats #active-skill-list li {
+      margin: 1px;
+      width: 35px;
+      height: 35px;
+      display: inline-block;
+      background: pink; }
+  #active-stats #active-weapon-label {
+    line-height: 10px;
+    width: 100%;
+    text-align: right;
+    margin-top: 5px;
+    margin-bottom: 10px; }
+  #active-stats #active-energy-bar {
+    height: 5px;
+    width: 100%;
+    background: cyan; }
+  #active-stats #active-energy-val {
+    font-size: 16px;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    text-align: right; }
+
+#comms {
+  background: white;
+  position: fixed;
+  height: 250px;
+  width: 175px;
+  bottom: calc(50vh - 125px);
+  left: 10px; }
+
+#crosshair {
+  background: gray;
+  position: fixed;
+  height: 100px;
+  width: 100px;
+  top: calc(50vh - 50px);
+  left: calc(50vw - 50px); }
+  #crosshair > * {
+    position: absolute; }
+  #crosshair #center {
+    background: white;
+    border-radius: 100%;
+    width: 6px;
+    height: 6px;
+    top: calc(50% - 3px);
+    left: calc(50% - 3px); }
+  #crosshair .bar {
+    border-style: solid; }
+  #crosshair #cross-shield-wrapper-wrapper {
+    position: absolute;
+    top: 50%;
+    left: calc(50% - 33px);
+    width: 66px;
+    height: 66px;
+    overflow: hidden; }
+    #crosshair #cross-shield-wrapper-wrapper #cross-shield-wrapper {
+      position: absolute;
+      width: 50%;
+      height: 50%;
+      top: 0;
+      overflow: hidden;
+      /* animation-name: cross-shields-anim;
+      animation-duration: 4s;
+      animation-iteration-count: infinite;
+      animation-timing-function: linear;
+      transform-origin: 100% 0%; */ }
+      #crosshair #cross-shield-wrapper-wrapper #cross-shield-wrapper #cross-shield {
+        position: absolute;
+        width: calc(200% - 3px);
+        height: calc(200% - 3px);
+        border-color: blue;
+        border-radius: 100%;
+        border-width: 3px;
+        bottom: 0px; }
+  #crosshair #cross-health-wrapper-wrapper {
+    position: absolute;
+    top: 50%;
+    right: calc(50% - 33px);
+    width: 66px;
+    height: 66px;
+    overflow: hidden; }
+    #crosshair #cross-health-wrapper-wrapper #cross-health-wrapper {
+      position: absolute;
+      width: 50%;
+      height: 50%;
+      top: 0;
+      right: 0;
+      overflow: hidden;
+      /* animation-name: cross-health-anim;
+      animation-duration: 4s;
+      animation-iteration-count: infinite;
+      animation-timing-function: linear;
+      transform-origin: 0% 0%; */ }
+      #crosshair #cross-health-wrapper-wrapper #cross-health-wrapper #cross-health {
+        position: absolute;
+        width: calc(200% - 3px);
+        height: calc(200% - 3px);
+        border-color: red;
+        border-radius: 100%;
+        border-width: 3px;
+        bottom: 0;
+        right: 0; }
+  #crosshair #cross-energy-wrapper-wrapper {
+    position: absolute;
+    top: 50%;
+    left: calc(50% - 36px);
+    width: 72px;
+    height: 72px;
+    overflow: hidden; }
+    #crosshair #cross-energy-wrapper-wrapper #cross-energy-wrapper {
+      position: absolute;
+      width: 100%;
+      height: 50%;
+      top: 0;
+      overflow: hidden;
+      /* animation-name: cross-energy-anim;
+      animation-duration: 4s;
+      animation-iteration-count: infinite;
+      animation-timing-function: linear;
+      transform-origin: 50% 0%; */ }
+      #crosshair #cross-energy-wrapper-wrapper #cross-energy-wrapper #cross-energy {
+        width: calc(100% - 6px);
+        height: calc(200% - 6px);
+        position: absolute;
+        border-color: cyan;
+        border-radius: 100%;
+        border-width: 3px;
+        bottom: 0; }
+  #crosshair #cross-transference-wrapper-wrapper {
+    position: relative;
+    width: 60px;
+    height: 60px;
+    top: calc(50%);
+    left: 20px;
+    overflow: hidden; }
+    #crosshair #cross-transference-wrapper-wrapper #cross-transference-wrapper {
+      position: absolute;
+      width: 100%;
+      height: 50%;
+      top: 0;
+      overflow: hidden;
+      /* animation-name: cross-transference-anim;
+      animation-duration: 4s;
+      animation-iteration-count: infinite;
+      animation-timing-function: linear;
+      transform-origin: 50% 0%; */ }
+      #crosshair #cross-transference-wrapper-wrapper #cross-transference-wrapper #cross-transference {
+        width: calc(100% - 6px);
+        height: calc(200% - 6px);
+        position: absolute;
+        border-color: lightblue;
+        border-radius: 100%;
+        border-width: 3px;
+        bottom: 0; }
+
+/* @keyframes cross-energy-anim {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(180deg);
+  }
+}
+@keyframes cross-shields-anim {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(90deg);
+  }
+}
+@keyframes cross-health-anim {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(-90deg);
+  }
+}
+@keyframes cross-transference-anim {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(180deg);
+  }
+} */
+#power-dots {
+  background: pink;
+  position: absolute;
+  height: 20px;
+  width: 100px;
+  top: calc(50vh + 50px);
+  left: calc(50vw - 50px);
+  text-align: center; }
+  #power-dots ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: inline-block;
+    background: purple;
+    margin: 0 auto; }
+    #power-dots ul li {
+      margin: 0 5px;
+      padding: 0;
+      border-style: solid;
+      width: 6px;
+      height: 6px;
+      border-radius: 100%;
+      border-color: white;
+      width: 0px;
+      height: 0px;
+      display: inline-block; }
+
+#party {
+  background: lime;
+  position: fixed;
+  width: 150px;
+  right: 10px;
+  top: 205px; }
+  #party .member {
+    margin-bottom: 5px;
+    font-size: 0; }
+    #party .member p {
+      margin: 0;
+      padding: 0;
+      text-overflow: '...';
+      overflow: hidden; }
+    #party .member .data-wrapper {
+      width: calc(100% - 40px);
+      display: inline-block;
+      font-size: 0;
+      background: darkred; }
+      #party .member .data-wrapper .val-wrapper {
+        text-align: right;
+        font-size: 0;
+        margin: 0;
+        padding: 0; }
+        #party .member .data-wrapper .val-wrapper .shield-val, #party .member .data-wrapper .val-wrapper .health-val {
+          font-size: 18px;
+          line-height: 18px; }
+        #party .member .data-wrapper .val-wrapper .shield-val {
+          color: darkcyan;
+          display: inline-block;
+          font-weight: 700; }
+        #party .member .data-wrapper .val-wrapper .health-val {
+          color: orange;
+          display: inline-block;
+          font-weight: 700; }
+      #party .member .data-wrapper .bar-wrapper {
+        width: 100%;
+        font-size: 0;
+        margin: 0; }
+        #party .member .data-wrapper .bar-wrapper .shield-bar {
+          display: inline-block;
+          border: 2px solid darkcyan;
+          width: calc(50% - 4px); }
+        #party .member .data-wrapper .bar-wrapper .health-bar {
+          display: inline-block;
+          border: 2px solid orange;
+          width: calc(50% - 4px); }
+        #party .member .data-wrapper .bar-wrapper .energy-bar {
+          display: block;
+          border: 1px solid cyan;
+          width: calc(100% - 2px); }
+      #party .member .data-wrapper .name-slot-wrapper {
+        font-size: 0;
+        margin-top: 2px; }
+        #party .member .data-wrapper .name-slot-wrapper .player-name {
+          width: calc(100% - 14px);
+          display: inline-block;
+          font-size: 14px;
+          line-height: 14px; }
+        #party .member .data-wrapper .name-slot-wrapper .slot {
+          width: 14px;
+          height: 14px;
+          display: inline-block;
+          font-size: 14px;
+          font-weight: 700;
+          line-height: 14px;
+          text-align: center;
+          background: white;
+          border-radius: 100%; }
+    #party .member .portrait {
+      position: relative;
+      display: inline-block;
+      height: 40px;
+      width: 40px;
+      padding: 0;
+      background: black; }
+      #party .member .portrait .mastery-rank {
+        font-size: 14px;
+        font-weight: 700;
+        line-height: 14px;
+        color: white;
+        position: absolute;
+        display: block;
+        bottom: 2px;
+        right: 2px;
+        width: initial; }
+
+/*# sourceMappingURL=index.css.map */

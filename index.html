@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Warframe UI Concept</title>
+    <script src="https://code.jquery.com/jquery-3.1.0.js"></script>   
+    <script src="/index.js"></script>
+    <link rel="stylesheet" href="/index.css">
+  </head>
+  <body>
+    <section id="map" class="block">
+      <section id="map-block"></section>
+      <p id="map-label">Assassinate: Coucilor Vay Hek</p>
+    </section>
+    <section id="frame-stats" class="block">
+      <section class="data-wrapper">
+        <section class="val-wrapper">
+          <p id="shield-val1" class="shield-val">240</p>
+          <p id="health-va1l" class="health-val">300</p>
+        </section>
+        <section class="bar-wrapper">
+          <p id="shield-bar1" class="shield-bar"></p>
+          <p id="health-bar1" class="health-bar"></p>
+        </section>
+        <section class="name-slot-wrapper">
+          <p id="frame-name" class="player-name">Ember Prime [30]</p>
+          <p id="player-slot1" class="slot">1</p>
+        </section>
+      </section>
+    </section>
+    <section id="companion">
+      <section class="data-wrapper">
+        <section class="val-wrapper">
+          <p id="com-shield-val" class="shield-val">300</p>
+          <p id="com-health-val" class="health-val">300</p>
+        </section>
+        <section class="bar-wrapper">
+          <p id="com-health-bar" class="health-bar"></p>
+          <p id="com-shield-bar" class="shield-bar"></p>
+        </section>
+        <section class="name-wrapper">
+          <p id="com-name">Diriga</p>
+        </section>
+      </section>
+    </section>
+    <section id="active-stats" class="block">
+      <p id="active-weapon-label">Twin Grakatas</p>
+      <ol id="active-skill-list">
+        <li id="active-skill1"></li>
+        <li id="active-skill2"></li>
+        <li id="active-skill3"></li>
+        <li id="active-skill4"></li>
+      </ol>
+      <section id="active-energy-bar"></section>
+      <p id="active-energy-val">30</p>
+    </section>
+    <section id="comms" class="block">
+      <img id="comms-portrait" src="" alt="">
+      <p id="comms-label"></p>
+    </section>
+    <section id="party">
+      <section id="member2" class="member">
+        <section id="data-wrapper2" class="data-wrapper">
+          <section class="val-wrapper">
+            <p id="shield-val2" class="shield-val">640</p>
+            <p id="health-val2" class="health-val">300</p>
+          </section>
+          <section class="bar-wrapper">
+            <p id="shield-bar2" class="shield-bar"></p>
+            <p id="health-bar2" class="health-bar"></p>
+            <p id="energy-bar2" class="energy-bar"></p>
+          </section>
+          <section class="name-slot-wrapper">
+            <p id="player-name2" class="player-name">Herpa Derp</p>
+            <p id="player-slot2" class="slot">2</p>
+          </section>
+        </section>
+        <section id="player-portait2" class="portrait">
+          <p id="mr2" class="mastery-rank">12</p>
+        </section>
+      </section>
+      <section id="member3" class="member">
+        <section id="data-wrapper3" class="data-wrapper">
+          <section class="val-wrapper">
+            <p id="shield-val3" class="shield-val">120</p>
+            <p id="health-val3" class="health-val">400</p>
+          </section>
+          <section class="bar-wrapper">
+            <p id="shield-bar3" class="shield-bar"></p>
+            <p id="health-bar3" class="health-bar"></p>
+            <p id="energy-bar3" class="energy-bar"></p>
+          </section>
+          <section class="name-slot-wrapper">
+            <p id="player-name3" class="player-name">idontactuallyhaveagoodnametoputhere</p>
+            <p id="player-slot3" class="slot">3</p>
+          </section>
+        </section>
+        <section id="player-portait3" class="portrait">
+          <p id="mr3" class="mastery-rank">23</p>
+        </section>
+      </section>
+      <section id="member4" class="member">
+        <section id="data-wrapper4" class="data-wrapper">
+          <section class="val-wrapper">
+            <p id="shield-val4" class="shield-val">200</p>
+            <p id="health-val4" class="health-val">100</p>
+          </section>
+          <section class="bar-wrapper">
+            <p id="shield-bar4" class="shield-bar"></p>
+            <p id="health-bar4" class="health-bar"></p>
+            <p id="energy-bar4" class="energy-bar"></p>
+          </section>
+          <section class="name-slot-wrapper">
+            <p id="player-name4" class="player-name">xx_sephiroth_360_noscope_xx</p>
+            <p id="player-slot4" class="slot">4</p>
+          </section>
+        </section>
+        <section id="player-portait4" class="portrait">
+          <p id="mr4" class="mastery-rank">2</p>
+        </section>
+      </section>
+    </section>
+    <section id="crosshair">
+      <section id="center"></section>
+      <section id="cross-shield-wrapper-wrapper">
+        <section id="cross-shield-wrapper">
+          <section id="cross-shield" class="bar"></section>
+        </section>
+      </section>
+      <section id="cross-health-wrapper-wrapper">
+        <section id="cross-health-wrapper">
+          <section id="cross-health" class="bar"></section>
+        </section>
+      </section>
+      <section id="cross-transference-wrapper-wrapper">
+        <section id="cross-transference-wrapper">
+          <section id="cross-transference" class="bar"></section>
+        </section>
+      </section>
+      <section id="cross-energy-wrapper-wrapper">
+        <section id="cross-energy-wrapper">
+          <section id="cross-energy" class="bar"></section>
+        </section>
+      </section>
+    </section>
+    <section id="power-dots">
+      <ul>
+        <li id="power-dot1" class="power-dot"></li>
+        <li id="power-dot2" class="power-dot"></li>
+        <li id="power-dot3" class="power-dot"></li>
+        <li id="power-dot4" class="power-dot"></li>
+      </ul>
+    </section>
+    <section id="gui">
+      <input type="range" id="safe-zone">
+      <input type="range" id="health" max="600">
+      <input type="range" id="health-max">
+      <input type="range" id="shield" max="600">
+      <input type="range" id="shield-max">
+      <input type="range" id="energy" max="600">
+      <input type="range" id="energy-max" step="5">
+      <input type="range" id="ammo" max="25">
+      <input type="range" id="ammo-max" step="5">
+      <input type="range" id="trans" max="100">
+    </section>
+  </body>
+</html>

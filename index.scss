@@ -1,0 +1,531 @@
+$safezone: 10px;
+
+.shield-val, .health-val {
+  font-weight: 700;
+  display: inline-block;
+  text-align: right;
+}
+.shield-val {
+  color: darkcyan;
+}
+.health-val {
+  color: darkred;
+}
+
+.val-wrapper {
+  text-align: right;
+}
+
+.data-wrapper{
+  width: 100%;
+  display: inline-block;
+  font-size: 0;
+  background: darkred;
+  .val-wrapper {
+    text-align: right;
+    font-size: 0;
+    margin: 0;
+    padding: 0;
+    .shield-val, .health-val {
+      font-size: 18px;
+      line-height: 18px;
+      margin: 0;
+    }
+    .shield-val {
+      color: darkcyan;
+      display: inline-block;
+      font-weight: 700;
+    }
+    .health-val {
+      color: orange;
+      display: inline-block;
+      font-weight: 700;
+    }
+  }
+  .bar-wrapper {
+    width: 100%;
+    font-size: 0;
+    margin: 0;
+    .shield-bar {
+      display: inline-block;
+      border: 2px solid darkcyan;
+      width: calc(50% - 4px);
+    }
+    .health-bar {
+      display: inline-block;
+      border: 2px solid orange;
+      width: calc(50% - 4px);
+    }
+    .energy-bar {
+      display: block;
+      border: 1px solid cyan;
+      width: calc(100% - 2px);
+    }
+  }
+  .name-slot-wrapper {
+    font-size: 0;
+    margin-top: 2px;
+    .player-name {
+      width: calc(100% - 14px);
+      display: inline-block;
+      font-size: 14px;
+      line-height: 14px;
+      text-align: right;
+    }
+    .slot {
+      width: 14px;
+      height: 14px;
+      display: inline-block;
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 14px;
+      text-align: center;
+      background: white;
+      border-radius: 100%;
+    }
+  }
+}
+
+body, html {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background: maroon;
+  overflow: hidden;
+}
+
+#gui {
+  display: none;
+  background: rgba(255,0,0,0.1);
+  height: 100%;
+  width: 100%;
+  z-index: 2;
+  position: fixed;
+  top: 0;
+}
+
+#map {
+  background: blue;
+  position: fixed;
+  height: 150px;
+  width: 180px;
+  top: $safezone;
+  left: $safezone;
+  #map-block {
+    background: pink;
+    display: block;
+    height: 100px;
+    width: 100%;
+    margin: 0;
+  }
+  #map-label {
+    margin: 0;
+    margin-top: 5px;
+    font-weight: 700;
+  }
+}
+
+#frame-stats {
+  background: yellow;
+  position: fixed;
+  height: 80px;
+  width: 210px;
+  top: $safezone;
+  right: $safezone;
+  .data-wrapper {
+    .val-wrapper {
+      height: 100%;
+      .shield-val, .health-val {
+        height: 100%;
+        font-size: 64px;
+        line-height: 54px;
+      }
+    }
+    .bar-wrapper {
+      .shield-bar, .health-bar {
+        border-width: 3px;
+        width: calc(50% - 6px);
+      }
+    }
+    .name-slot-wrapper {
+      .player-name, .slot {
+        font-size: 16px;
+        line-height: 16px;
+        height: 16px;
+        margin: 0;
+      }
+      .player-name {
+        right: 5px;
+      }
+    }
+  }
+}
+
+#companion {
+  background: pink;
+  position: fixed;
+  height: 50px;
+  width: 125px;
+  top: $safezone + 100px;
+  right: $safezone;
+  margin-top: 5px;
+}
+
+#active-stats {
+  background: green;
+  position: fixed;
+  width: 180px;
+  right: $safezone;
+  bottom: $safezone;
+  #active-skill-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    li {
+      margin: 1px;
+      width: 35px;
+      height: 35px;
+      display: inline-block;
+      background: pink;
+    }
+  }
+  #active-weapon-label {
+    line-height: 10px;
+    width: 100%;
+    text-align: right;
+    margin-top: 5px;
+    margin-bottom: 10px;
+  }
+  #active-energy-bar {
+    height: 5px;
+    width: 100%;
+    background: cyan;
+  }
+  #active-energy-val {
+    font-size: 16px;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    text-align: right;
+  }
+}
+
+#comms {
+  background: white;
+  position: fixed;
+  height: 250px;
+  width: 175px;
+  bottom: calc(50vh - 125px);
+  left: $safezone;
+}
+
+#crosshair {
+  background: gray;
+  position: fixed;
+  height: 100px;
+  width: 100px;
+  top: calc(50vh - 50px);
+  left: calc(50vw - 50px);
+  > * {
+    position: absolute;
+  }
+  #center {
+    background: white;
+    border-radius: 100%;
+    width: 6px;
+    height: 6px;
+    top: calc(50% - 3px);
+    left: calc(50% - 3px);
+  }
+  .bar {
+    border-style: solid;
+  }
+  #cross-shield-wrapper-wrapper {
+    position: absolute;
+    top: 50%;
+    left: calc(50% - 33px);
+    width: 66px;
+    height: 66px;
+    overflow: hidden;
+    #cross-shield-wrapper {
+      position: absolute;
+      width: 50%;
+      height: 50%;
+      top: 0;
+      overflow: hidden;
+      #cross-shield {
+        position: absolute;
+        width: calc(200% - 3px);
+        height: calc(200% - 3px);
+        border-color: blue;
+        border-radius: 100%;
+        border-width: 3px;
+        bottom: 0px;
+      }
+      /* animation-name: cross-shields-anim;
+      animation-duration: 4s;
+      animation-iteration-count: infinite;
+      animation-timing-function: linear;
+      transform-origin: 100% 0%; */
+    }
+  }
+  #cross-health-wrapper-wrapper {
+    position: absolute;
+    top: 50%;
+    right: calc(50% - 33px);
+    width: 66px;
+    height: 66px;
+    overflow: hidden;
+    #cross-health-wrapper {
+      position: absolute;
+      width: 50%;
+      height: 50%;
+      top: 0;
+      right: 0;
+      overflow: hidden;
+      #cross-health {
+        position: absolute;
+        width: calc(200% - 3px);
+        height: calc(200% - 3px);
+        border-color: red;
+        border-radius: 100%;
+        border-width: 3px;
+        bottom: 0;
+        right: 0;
+      }
+      /* animation-name: cross-health-anim;
+      animation-duration: 4s;
+      animation-iteration-count: infinite;
+      animation-timing-function: linear;
+      transform-origin: 0% 0%; */
+    }
+  }
+  #cross-energy-wrapper-wrapper {
+    position: absolute;
+    top: 50%;
+    left: calc(50% - 36px);
+    width: 72px;
+    height: 72px;
+    overflow: hidden;
+    #cross-energy-wrapper {
+      position: absolute;
+      width: 100%;
+      height: 50%;
+      top: 0;
+      overflow: hidden;
+      #cross-energy{
+        width: calc(100% - 6px);
+        height: calc(200% - 6px);
+        position: absolute;
+        border-color: cyan;
+        border-radius: 100%;
+        border-width: 3px;
+        bottom: 0;
+      }
+      /* animation-name: cross-energy-anim;
+      animation-duration: 4s;
+      animation-iteration-count: infinite;
+      animation-timing-function: linear;
+      transform-origin: 50% 0%; */
+    }
+  }
+  #cross-transference-wrapper-wrapper {
+    position: relative;
+    width: 60px;
+    height: 60px;
+    top: calc(50%);
+    left: 20px;
+    overflow: hidden;
+    #cross-transference-wrapper {
+      position: absolute;
+      width: 100%;
+      height: 50%;
+      top: 0;
+      overflow: hidden;
+      #cross-transference{
+        width: calc(100% - 6px);
+        height: calc(200% - 6px);
+        position: absolute;
+        border-color: lightblue;
+        border-radius: 100%;
+        border-width: 3px;
+        bottom: 0;
+      }
+      /* animation-name: cross-transference-anim;
+      animation-duration: 4s;
+      animation-iteration-count: infinite;
+      animation-timing-function: linear;
+      transform-origin: 50% 0%; */
+    }
+  }
+}
+
+/* @keyframes cross-energy-anim {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(180deg);
+  }
+}
+@keyframes cross-shields-anim {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(90deg);
+  }
+}
+@keyframes cross-health-anim {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(-90deg);
+  }
+}
+@keyframes cross-transference-anim {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(180deg);
+  }
+} */
+
+
+#power-dots {
+  background: pink;
+  position: absolute;
+  height: 20px;
+  width: 100px;
+  top: calc(50vh + 50px);
+  left: calc(50vw - 50px);
+  text-align: center;
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: inline-block;
+    background: purple;
+    margin: 0 auto;
+    li {
+      margin: 0 5px;
+      padding: 0;
+      border-style: solid;
+      width: 6px;
+      height: 6px;
+      border-radius: 100%;
+      border-color: white;
+      width: 0px;
+      height: 0px;
+      display: inline-block;
+    }
+  }
+}
+
+#party {
+  background: lime;
+  position: fixed;
+  width: 150px;
+  right: $safezone;
+  top: 200px + $safezone/2;
+  .member {
+    margin-bottom: 5px;
+    font-size: 0;
+    p {
+      margin: 0;
+      padding: 0;
+      text-overflow: '...';
+      overflow: hidden;
+    }
+    .data-wrapper{
+      width: calc(100% - 40px);
+      display: inline-block;
+      font-size: 0;
+      background: darkred;
+      .val-wrapper {
+        text-align: right;
+        font-size: 0;
+        margin: 0;
+        padding: 0;
+        .shield-val, .health-val {
+          font-size: 18px;
+          line-height: 18px;
+        }
+        .shield-val {
+          color: darkcyan;
+          display: inline-block;
+          font-weight: 700;
+        }
+        .health-val {
+          color: orange;
+          display: inline-block;
+          font-weight: 700;
+        }
+      }
+      .bar-wrapper {
+        width: 100%;
+        font-size: 0;
+        margin: 0;
+        .shield-bar {
+          display: inline-block;
+          border: 2px solid darkcyan;
+          width: calc(50% - 4px);
+        }
+        .health-bar {
+          display: inline-block;
+          border: 2px solid orange;
+          width: calc(50% - 4px);
+        }
+        .energy-bar {
+          display: block;
+          border: 1px solid cyan;
+          width: calc(100% - 2px);
+        }
+      }
+      .name-slot-wrapper {
+        font-size: 0;
+        margin-top: 2px;
+        .player-name {
+          width: calc(100% - 14px);
+          display: inline-block;
+          font-size: 14px;
+          line-height: 14px;
+        }
+        .slot {
+          width: 14px;
+          height: 14px;
+          display: inline-block;
+          font-size: 14px;
+          font-weight: 700;
+          line-height: 14px;
+          text-align: center;
+          background: white;
+          border-radius: 100%;
+        }
+      }
+    }
+    .portrait {
+      position: relative;
+      display: inline-block;
+      height: 40px;
+      width: 40px;
+      padding: 0;
+      background: black;
+      .mastery-rank {
+        font-size: 14px;
+        font-weight: 700;
+        line-height: 14px;
+        color: white;
+        position: absolute;
+        display: block;
+        bottom: 2px;
+        right: 2px;
+        width: initial;
+      }
+    }
+  }
+}
